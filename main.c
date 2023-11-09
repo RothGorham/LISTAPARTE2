@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-#include "funcoes.h"
+#include "lista.h"
 
 #ifdef _WIN32 // Verifica se é Windows
     #define CLEAR_SCREEN "cls"
@@ -40,7 +40,7 @@ int main (){
         } else if (opcao == 3){
             system(CLEAR_SCREEN);
             listarTarefa(lt);
-            
+
             printf("Pressione Enter para voltar ao menu...");
             getchar(); // Captura o Enter
             getchar(); // Aguarda o próximo Enter
