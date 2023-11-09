@@ -1,12 +1,13 @@
 #include <stdio.h>
+#include <wchar.h>  // Add this line
 
 typedef struct {
     int prioridade;
-    // Mudei o char para wchar_t, para que o programa aceite caracteres especiais
-    wchar_t categoria[100];
-    wchar_t descricao[300];
+    wchar_t categoria[10];
+    wchar_t descricao[10];
+    int status; // mostrar completo, em andamento ou nao iniciado
 } Tarefa;
-
+// colocar para 300 depois 
 typedef struct {
     Tarefa tarefas[100];
     int qtd;
@@ -17,7 +18,5 @@ int deletarTarefa(ListaDeTarefas *lt);
 int listarTarefa(ListaDeTarefas lt);
 
 void printMenu();
-// fwrite
 int salvarLista(ListaDeTarefas lt, char nome[]);
-// fread
 int carregarLista(ListaDeTarefas *lt, char nome[]);
