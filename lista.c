@@ -1,4 +1,4 @@
-#include "funcoes.h"
+#include "lista.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
@@ -23,6 +23,9 @@ int criarTarefa(ListaDeTarefas *lt) {
 
         printf("Digite a prioridade (de 1 a 10): ");
         scanf("%d", &lt->tarefas[lt->qtd].prioridade);
+
+        printf("Digite o status (1 para completo, 2 para em andamento, 3 para não iniciado): ");
+        scanf("%d", &lt->tarefas[lt->qtd].status);
 
         lt->qtd++;
         return 0;
@@ -64,7 +67,7 @@ int listarTarefa(ListaDeTarefas lt) {
     printf("Lista de tarefas\n");
     printf("Quantidade de tarefas: %d\n", lt.qtd);
     printf("\n");
-    
+
     if (lt.qtd == 0) {
         wprintf(L"A lista de tarefas está vazia.\n");
         return 1; 
@@ -75,11 +78,13 @@ int listarTarefa(ListaDeTarefas lt) {
         wprintf(L"Categoria: %s", lt.tarefas[i].categoria);
         wprintf(L"Descrição: %ls", lt.tarefas[i].descricao);
         printf("Prioridade: %d\n", lt.tarefas[i].prioridade);
+        printf("Status: %d\n", lt.tarefas[i].status);  // mostrar o status 
         printf("\n");
     }
 
     return 0; 
 }
+
 
 // Mostra o menu
 void printMenu(){
