@@ -49,7 +49,7 @@ int main (){
         } else if (opcao == 4) {
             system(CLEAR_SCREEN);
             mudarTarefa(&lt); 
-            
+
             printf("Pressione Enter para voltar ao menu...");
             getchar(); // Captura o Enter
             getchar(); // Aguarda o próximo Enter
