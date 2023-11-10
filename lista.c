@@ -315,7 +315,7 @@ int catepri(ListaDeTarefas lt) {
         return 1; // Retorna 1 indicando que houve um erro
     }
 
-    // Cria uma variável para armazenar a categoria escolhida
+    // variável para armazenar a categoria escolhida
     char categoriaEscolhida[50];
     // Copia a categoria escolhida para a variável
     strcpy(categoriaEscolhida, lt.tarefas[escolhaCategoria - 1].categoria);
@@ -353,6 +353,51 @@ int catepri(ListaDeTarefas lt) {
     return 0; // Retorna 0 indicando que a função executou corretamente
 }
 
+int downloadPorPrioridade(Tarefa tarefasFiltradas[], int qtdTarefasFiltradas) {
+    int prioridade;
+
+    printf("Digite a prioridade desejada (de 1 a 10): ");
+    scanf("%d", &prioridade);
+
+    if (prioridade < 1 || prioridade > 10) {
+        printf("Prioridade inválida. Digite um valor entre 1 e 10.\n");
+        return 1;
+    }
+
+    FILE *arquivo;
+    arquivo = fopen("downloadPorPrioridade.txt", "w");
+
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return 1;
+    }
+
+    int encontrouPrioridade = 0;
+
+    for (int i = 0; i < qtdTarefasFiltradas; i++) {
+        if (tarefasFiltradas[i].prioridade == prioridade) {
+            encontrouPrioridade = 1;
+
+            fprintf(arquivo, "Prioridade: %d\n", tarefasFiltradas[i].prioridade);
+            fprintf(arquivo, "Categoria: %s\n", tarefasFiltradas[i].categoria);
+            fprintf(arquivo, "Status: %d\n", tarefasFiltradas[i].status);
+            fprintf(arquivo, "Descrição: %s\n", tarefasFiltradas[i].descricao);
+            fprintf(arquivo, "Nome: %s\n", tarefasFiltradas[i].nome);
+            fprintf(arquivo, "\n");
+        }
+    }
+
+    fclose(arquivo);
+
+    if (!encontrouPrioridade) {
+        printf("Nenhuma tarefa encontrada com a prioridade %d.\n", prioridade);
+    } else {
+        printf(" Dowload das tarefas com prioridade %d concluída.", prioridade);
+    }
+
+    return 0;
+}
+
 
 // Função principal para listar tarefas
 int listarTarefa(ListaDeTarefas lt) {
@@ -365,6 +410,7 @@ int listarTarefa(ListaDeTarefas lt) {
     printf("3 - Filtrar tarefas por Status\n");
     printf("4 - Filtrar tarefas por categoria\n");
     printf("5 - Filtrar tarefas por categoria e prioridade\n");
+    printf("6 - Dowload tarefa por Prioridade\n");
     printf("Digite a opção desejada: ");
 
     // Lê a opção escolhida pelo usuário
@@ -402,9 +448,13 @@ int listarTarefa(ListaDeTarefas lt) {
             // Chama a função para filtrar por categoria
             filtrarPorCategoria(lt);
             break;
-      
+
         case 5:
             catepri(lt);
+
+      case 6:
+           downloadPorPrioridade(lt.tarefas, lt.qtd);
+
       
         default:
             // Opção inválida
