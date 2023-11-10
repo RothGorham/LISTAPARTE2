@@ -48,8 +48,8 @@ int main (){
             system(CLEAR_SCREEN);
         } else if (opcao == 4) {
             system(CLEAR_SCREEN);
-            mudarTarefa(&lt); // Call the mudarTarefa function
-
+            mudarTarefa(&lt); 
+            
             printf("Pressione Enter para voltar ao menu...");
             getchar(); // Captura o Enter
             getchar(); // Aguarda o próximo Enter
