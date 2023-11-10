@@ -150,14 +150,18 @@ int deletarTarefa(ListaDeTarefas *lt) {
     }
 }
 
+
 // lista as tarefas
 int listarTarefa(ListaDeTarefas lt) {
-  int opcao; 
-  int prioridade;
+    int opcao;
+    int prioridade; // Variable to store user input for filtering
+    int estado;     // Variable to store user input for filtering
+
     // Imprime as opções
     printf("Menu Listar Tarefas\n");
     printf("1 - Mostrar todas as tarefas\n");
     printf("2 - Filtrar tarefas por prioridade\n");
+    printf("3 - Filtrar tarefas por Status\n");
     printf("Digite a opção desejada: ");
 
     // Lê a opção escolhida pelo usuário
@@ -177,13 +181,13 @@ int listarTarefa(ListaDeTarefas lt) {
 
             printf("\nLista de tarefas com prioridade %d\n", prioridade);
 
-            int encontrou = 0; // Variável para verificar se encontrou alguma tarefa com a prioridade escolhida
+            int encontrouPrioridade = 0; // Variável para verificar se encontrou alguma tarefa com a prioridade escolhida
 
             // Loop para percorrer todas as tarefas
             for (int i = 0; i < lt.qtd; i++) {
                 // Verifica se a tarefa tem a prioridade escolhida
                 if (lt.tarefas[i].prioridade == prioridade) {
-                    encontrou = 1; // Marca que encontrou uma tarefa com a prioridade escolhida
+                    encontrouPrioridade = 1; // Marca que encontrou uma tarefa com a prioridade escolhida
                     // Imprime os detalhes da tarefa
                     printf("Tarefa %d\n", i + 1);
                     printf("Nome: %s\n", lt.tarefas[i].nome);
@@ -195,11 +199,43 @@ int listarTarefa(ListaDeTarefas lt) {
             }
 
             // Verifica se não encontrou nenhuma tarefa com a prioridade escolhida
-            if (!encontrou) {
+            if (!encontrouPrioridade) {
                 printf("Nenhuma tarefa encontrada com a prioridade %d.\n", prioridade);
             }
 
             return 0; // Retorna 0 indicando que a função executou corretamente
+
+        case 3:
+            // Opção para filtrar tarefas por Status
+            printf("Digite o Status desejado (1 para completo, 2 para em andamento, 3 para não iniciado): ");
+            scanf("%d", &estado);
+
+            printf("\nLista de tarefas com Status %d\n", estado);
+
+            int encontrouEstado = 0; // Variável para verificar se encontrou alguma tarefa com o estado escolhido
+
+            // Loop para percorrer todas as tarefas
+            for (int i = 0; i < lt.qtd; i++) {
+                // Verifica se a tarefa tem o estado escolhido
+                if (lt.tarefas[i].status == estado) {
+                    encontrouEstado = 1; // Marca que encontrou uma tarefa com o estado escolhido
+                    // Imprime os detalhes da tarefa
+                    printf("Tarefa %d\n", i + 1);
+                    printf("Nome: %s\n", lt.tarefas[i].nome);
+                    printf("Categoria: %s\n", lt.tarefas[i].categoria);
+                    printf("Descrição: %s\n", lt.tarefas[i].descricao);
+                    printf("Status: %d\n", lt.tarefas[i].status);
+                    printf("\n");
+                }
+            }
+
+            // Verifica se não encontrou nenhuma tarefa com o estado escolhido
+            if (!encontrouEstado) {
+                printf("Nenhuma tarefa encontrada com o Status %d.\n", estado);
+            }
+
+            return 0; // Retorna 0 indicando que a função executou corretamente
+
         default:
             // Opção inválida
             printf("Opção inválida.\n");
@@ -228,8 +264,6 @@ int listarTarefa(ListaDeTarefas lt) {
 
     return 0; // Retorna 0 indicando que a função executou corretamente
 }
-
-
 
 
 // Mostra o menu
