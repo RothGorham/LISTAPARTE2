@@ -31,15 +31,24 @@ int main (){
             printf("Saindo...\n");
         }
         else if (opcao == 1){
+            system(CLEAR_SCREEN);
             criarTarefa(&lt);
             // Limpar o terminal
-            system(CLEAR_SCREEN);
         } else if (opcao == 2){
             deletarTarefa(&lt);
             system(CLEAR_SCREEN);
         } else if (opcao == 3){
             system(CLEAR_SCREEN);
             listarTarefa(lt);
+
+            printf("Pressione Enter para voltar ao menu...");
+            getchar(); // Captura o Enter
+            getchar(); // Aguarda o próximo Enter
+
+            system(CLEAR_SCREEN);
+        } else if (opcao == 4) {
+            system(CLEAR_SCREEN);
+            mudarTarefa(&lt); // Call the mudarTarefa function
 
             printf("Pressione Enter para voltar ao menu...");
             getchar(); // Captura o Enter
