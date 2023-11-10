@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <wchar.h>  
-
 typedef struct {
     int prioridade;
     wchar_t categoria[10];
@@ -17,11 +16,15 @@ typedef struct {
     int qtd;
 } ListaDeTarefas;
 
+
+
 int criarTarefa(ListaDeTarefas *lt);
 int deletarTarefa(ListaDeTarefas *lt);
 int listarTarefa(ListaDeTarefas lt);
 int mudarTarefa(ListaDeTarefas *lt);
-
+int filtrarPorPrioridade(ListaDeTarefas lt);
+int filtrarPorStatus(ListaDeTarefas lt);
+int filtrarPorCategoria(ListaDeTarefas lt);
 
 void printMenu();
 int salvarLista(ListaDeTarefas lt, char nome[]);
