@@ -50,14 +50,14 @@ int mudarTarefa(ListaDeTarefas *lt) {
             printf("Digite a nova descrição da tarefa: ");
             fgets(lt->tarefas[pos].descricao, sizeof(lt->tarefas[pos].descricao), stdin);
             break;
-        case 4:
-            printf("Digite a nova prioridade da tarefa (de 1 a 10): ");
-            scanf("%d", <->tarefas[pos].prioridade);
-            break;
-        case 5:
-            printf("Digite o novo status da tarefa (1 para completo, 2 para em andamento, 3 para não iniciado): ");
-            scanf("%d", <->tarefas[pos].status);
-            break;
+      case 4:
+          printf("Digite a nova prioridade da tarefa (de 1 a 10): ");
+          scanf("%d", &lt->tarefas[pos].prioridade);
+          break;
+      case 5:
+          printf("Digite o novo status da tarefa (1 para completo, 2 para em andamento, 3 para não iniciado): ");
+          scanf("%d", &lt->tarefas[pos].status);
+          break;
         default:
             printf("Opção inválida.\n");
             return 1;
