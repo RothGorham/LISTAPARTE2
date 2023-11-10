@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <wchar.h>  // Add this line
+#include <wchar.h>  
 
 typedef struct {
     int prioridade;
@@ -13,13 +13,17 @@ typedef struct {
 typedef struct {
     Tarefa tarefas[10];
 // colocar 100
+    int pos;
     int qtd;
 } ListaDeTarefas;
 
 int criarTarefa(ListaDeTarefas *lt);
 int deletarTarefa(ListaDeTarefas *lt);
 int listarTarefa(ListaDeTarefas lt);
+int mudarTarefa(ListaDeTarefas *lt);
+
 
 void printMenu();
 int salvarLista(ListaDeTarefas lt, char nome[]);
 int carregarLista(ListaDeTarefas *lt, char nome[]);
+
