@@ -150,28 +150,86 @@ int deletarTarefa(ListaDeTarefas *lt) {
     }
 }
 
-// Mostra a lista de tarefas e retorna 0 se a lista não estiver vazia
+// lista as tarefas
 int listarTarefa(ListaDeTarefas lt) {
-    printf("Lista de tarefas\n");
+  int opcao; 
+  int prioridade;
+    // Imprime as opções
+    printf("Menu Listar Tarefas\n");
+    printf("1 - Mostrar todas as tarefas\n");
+    printf("2 - Filtrar tarefas por prioridade\n");
+    printf("Digite a opção desejada: ");
+
+    // Lê a opção escolhida pelo usuário
+    scanf("%d", &opcao);
+    printf("\n");
+
+    // Verifica a opção escolhida pelo usuário
+    switch (opcao) {
+        case 1:
+            // Opção para mostrar todas as tarefas
+            printf("Lista de todas as tarefas\n");
+            break;
+        case 2:
+            // Opção para filtrar tarefas por prioridade
+            printf("Digite a prioridade desejada (de 1 a 10): ");
+            scanf("%d", &prioridade);
+
+            printf("\nLista de tarefas com prioridade %d\n", prioridade);
+
+            int encontrou = 0; // Variável para verificar se encontrou alguma tarefa com a prioridade escolhida
+
+            // Loop para percorrer todas as tarefas
+            for (int i = 0; i < lt.qtd; i++) {
+                // Verifica se a tarefa tem a prioridade escolhida
+                if (lt.tarefas[i].prioridade == prioridade) {
+                    encontrou = 1; // Marca que encontrou uma tarefa com a prioridade escolhida
+                    // Imprime os detalhes da tarefa
+                    printf("Tarefa %d\n", i + 1);
+                    printf("Nome: %s\n", lt.tarefas[i].nome);
+                    printf("Categoria: %s\n", lt.tarefas[i].categoria);
+                    printf("Descrição: %s\n", lt.tarefas[i].descricao);
+                    printf("Status: %d\n", lt.tarefas[i].status);
+                    printf("\n");
+                }
+            }
+
+            // Verifica se não encontrou nenhuma tarefa com a prioridade escolhida
+            if (!encontrou) {
+                printf("Nenhuma tarefa encontrada com a prioridade %d.\n", prioridade);
+            }
+
+            return 0; // Retorna 0 indicando que a função executou corretamente
+        default:
+            // Opção inválida
+            printf("Opção inválida.\n");
+            return 1; // Retorna 1 indicando que houve um erro
+    }
+
+    // Imprime a quantidade de tarefas
     printf("Quantidade de tarefas: %d\n", lt.qtd);
     printf("\n");
 
+    // Verifica se a lista de tarefas está vazia
     if (lt.qtd == 0) {
         printf("A lista de tarefas está vazia.\n");
-        return 1;
+    } else {
+        // Loop para percorrer todas as tarefas
+        for (int i = 0; i < lt.qtd; i++) {
+            // Imprime os detalhes da tarefa
+            printf("Tarefa %d\n", i + 1);
+            printf("Nome: %s\n", lt.tarefas[i].nome);
+            printf("Categoria: %s\n", lt.tarefas[i].categoria);
+            printf("Descrição: %s\n", lt.tarefas[i].descricao);
+            printf("Status: %d\n", lt.tarefas[i].status);
+            printf("\n");
+        }
     }
 
-    for (int i = 0; i < lt.qtd; i++) {
-        printf("Tarefa %d\n", i + 1);
-        printf("Nome: %s\n", lt.tarefas[i].nome);
-        printf("Categoria: %s\n", lt.tarefas[i].categoria);
-        printf("Descrição: %s\n", lt.tarefas[i].descricao);
-        printf("Status: %d\n", lt.tarefas[i].status);
-        printf("\n");
-    }
-
-    return 0;
+    return 0; // Retorna 0 indicando que a função executou corretamente
 }
+
+
 
 
 // Mostra o menu
