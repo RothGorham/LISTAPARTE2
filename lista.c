@@ -305,6 +305,54 @@ int filtrarPorCategoria(ListaDeTarefas lt) {
     return 0; // Retorna 0 indicando que a função executou corretamente
 }
 
+// Função para filtrar tarefas por categoria e prioridade
+int catepri(ListaDeTarefas lt) {
+    // Imprime as categorias e recebe a escolha do usuário
+    int escolhaCategoria = imprimirCategoriasNumeradas(lt);
+
+    // Verifica se houve um erro na escolha da categoria
+    if (escolhaCategoria == -1) {
+        return 1; // Retorna 1 indicando que houve um erro
+    }
+
+    // Cria uma variável para armazenar a categoria escolhida
+    char categoriaEscolhida[50];
+    // Copia a categoria escolhida para a variável
+    strcpy(categoriaEscolhida, lt.tarefas[escolhaCategoria - 1].categoria);
+
+    // Opção para filtrar tarefas por prioridade
+    int prioridade;
+    printf("Digite a prioridade desejada (de 1 a 10): ");
+    scanf("%d", &prioridade); // Recebe a prioridade desejada do usuário
+
+    printf("\nLista de tarefas na Categoria %s com prioridade %d\n", categoriaEscolhida, prioridade);
+
+    int encontrouTarefa = 0; // Variável para verificar se encontrou alguma tarefa que atenda aos critérios
+
+    // Loop para percorrer todas as tarefas
+    for (int i = 0; i < lt.qtd; i++) {
+        // Verifica se a tarefa tem a categoria e prioridade escolhidas
+        if (strcmp(lt.tarefas[i].categoria, categoriaEscolhida) == 0 && lt.tarefas[i].prioridade == prioridade) {
+            encontrouTarefa = 1; // Marca que encontrou uma tarefa que atende aos critérios
+            // Imprime os detalhes da tarefa
+            printf("Tarefa %d\n", i + 1);
+            printf("Nome: %s\n", lt.tarefas[i].nome);
+            printf("Categoria: %s\n", lt.tarefas[i].categoria);
+            printf("Descrição: %s\n", lt.tarefas[i].descricao);
+            printf("Prioridade: %d\n", lt.tarefas[i].prioridade);
+            printf("Status: %d\n", lt.tarefas[i].status);
+            printf("\n");
+        }
+    }
+
+    // Verifica se não encontrou nenhuma tarefa que atenda aos critérios
+    if (!encontrouTarefa) {
+        printf("Nenhuma tarefa encontrada na Categoria %s com prioridade %d.\n", categoriaEscolhida, prioridade);
+    }
+
+    return 0; // Retorna 0 indicando que a função executou corretamente
+}
+
 
 // Função principal para listar tarefas
 int listarTarefa(ListaDeTarefas lt) {
@@ -316,6 +364,7 @@ int listarTarefa(ListaDeTarefas lt) {
     printf("2 - Filtrar tarefas por prioridade\n");
     printf("3 - Filtrar tarefas por Status\n");
     printf("4 - Filtrar tarefas por categoria\n");
+    printf("5 - Filtrar tarefas por categoria e prioridade\n");
     printf("Digite a opção desejada: ");
 
     // Lê a opção escolhida pelo usuário
@@ -353,7 +402,10 @@ int listarTarefa(ListaDeTarefas lt) {
             // Chama a função para filtrar por categoria
             filtrarPorCategoria(lt);
             break;
-
+      
+        case 5:
+            catepri(lt);
+      
         default:
             // Opção inválida
             printf("Opção inválida.\n");
