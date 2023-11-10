@@ -25,6 +25,7 @@ int mudarTarefa(ListaDeTarefas *lt);
 int filtrarPorPrioridade(ListaDeTarefas lt);
 int filtrarPorStatus(ListaDeTarefas lt);
 int filtrarPorCategoria(ListaDeTarefas lt);
+int filtrarPorCategoriaEPrioridade(ListaDeTarefas lt);
 
 void printMenu();
 int salvarLista(ListaDeTarefas lt, char nome[]);
