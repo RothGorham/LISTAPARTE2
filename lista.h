@@ -27,9 +27,10 @@ int filtrarPorStatus(ListaDeTarefas lt);
 int filtrarPorCategoria(ListaDeTarefas lt);
 int filtrarPorCategoriaEPrioridade(ListaDeTarefas lt);
 int downloadPorPrioridade(Tarefa tarefasFiltradas[], int qtdTarefasFiltradas);
+int downloadPorCategoria(ListaDeTarefas lt);
+int downloadPorCategoria(ListaDeTarefas lt);
 
 
 void printMenu();
 int salvarLista(ListaDeTarefas lt, char nome[]);
 int carregarLista(ListaDeTarefas *lt, char nome[]);
-
