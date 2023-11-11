@@ -1,39 +1,63 @@
 # LISTAPARTE2
 
-# Requisitos
-Continuando o projeto 1, vamos adicionar algumas funções para melhorar o uso da lista de tarefas, sendo que uma delas é a modificação dos dados da tarefa permitindo armazenar o estado dela que pode ser:
+# Projeto 3 - Gerenciador de Tarefas em C
 
-# completo;
-# em andamento;
-# não iniciado.
-# Para isto, altere a estrutura usada para armazenar os valores da tarefa e adicione mais esta opção.
+# Resumo do Projeto:
 
-# Funções
-#Continuando o projeto de lista de tarefas, você deve implementar as seguintes funções:
-# Alterar tarefas: o usuário deve escolher uma tarefa e qual campo deseja alterar. O seu programa deve sobrescrever o dado que foi informado pelo usuário;
-# Filtrar tarefas por prioridade: seu programa deve listar na tela as tarefas que possuem uma prioridade escolhida pelo usuário;
-# Filtrar tarefas por estado: da mesma forma que o anterior, mas apenas o estado que o usuário selecionar;
-# Filtrar tarefas por categoria: idem, mas com o filtro por categoria e com a prioridade ordenada da maior para a menor;
-# Filtrar tarefas por prioridade e categoria: junção das duas funções anteriores em que o usuário escolhe a categoria e a prioridade e o seu programa deve exibir as tarefas que passarem pelos dois filtros;
-# Exportar tarefas por prioridade: seu programa deve gerar um arquivo texto listando apenas as tarefas da prioridade escolhida pelo usuário. Cada tarefa deve estar em uma linha do arquivo na sequência: prioridade, categoria, estado e descrição;
-# Exportar tarefas por categoria: idem ao anterior, inclusive no formato do arquivo exportado, sendo que as tarefas devem estar ordenadas por prioridade;
-# Exportar tarefas por prioridade e categoria: junção dos filtros anteriores, mantendo o formato do arquivo que deve ser exportado.
-# Além destas, você deve alterar as funções que já foram implementadas para aceitar o armazenamento do estado da tarefa.
+Este projeto visa a criação de um aplicativo em C para o gerenciamento de uma lista de tarefas. Cada tarefa terá informações vitais como descrição, categoria e prioridade. O aplicativo permitirá ao usuário registrar, remover e visualizar tarefas, com capacidade para armazenar até 100 tarefas.
 
-# Limitações
-Não será permitido o uso de bibliotecas além do que já é oferecido no momento da instalação. O projeto receberá nota zero se utilizar bibliotecas não desenvolvidas por você;
-Caso seja detectado código copiado ou qualquer forma de plágio, a nota será zerada.
-O código deve ser comentado de forma a explicar a lógica desenvolvida ao longo do código e isto pode afetar a nota;
+# Funcionalidades Básicas:
 
-#Pontuação para cada função que precisa ser implementada:
+# Registro de Tarefas:
 
-#Armazenar o estado da tarefa - 1 ponto
-#Alterar tarefas - 1 ponto
-#Filtrar tarefas por prioridade - 1 ponto
-#Filtrar tarefas por estado - 1 ponto
-#Filtrar tarefas por categoria - 1 ponto
-#Filtrar tarefas por prioridade e categoria - 1 ponto
-#Exportar tarefas por prioridade - 1 ponto
-#Exportar tarefas por categoria - 1 ponto
-#Exportar tarefas por prioridade e categoria - 1 ponto
-#README.md no repositório - 1 ponto
+O usuário tem a capacidade de registrar uma nova tarefa, fornecendo descrição, categoria e prioridade. O aplicativo guarda essas informações em um arquivo binário, utilizando as funções fread e fwrite. Visualização de Tarefas:
+
+O usuário pode ver todas as tarefas registradas, sem filtros ou com filtros.
+
+# Remoção de Tarefas:
+
+O usuário tem a opção de remover uma tarefa específica da lista. 
+
+# Alteração do Status da Tarefa:
+
+Foi adicionadas opções para mudar o status de uma tarefa: concluído, em progresso ou não iniciado. 
+
+# Funcionalidades Extras:
+
+Implementação de novas funcionalidades para aprimorar a experiência do usuário. 
+
+# Funcionalidades Extras:
+
+O usuário pode selecionar uma tarefa e alterar qualquer campo associado a ela. 
+
+# Filtro de Tarefas por Prioridade:
+
+Mostra na tela as tarefas que possuem uma prioridade escolhida pelo usuário. 
+
+# Filtro de Tarefas por Status:
+
+Lista as tarefas baseado no status escolhido pelo usuário: concluído, em progresso ou não iniciado. 
+
+# Filtro de Tarefas por Categoria:
+
+Exibe as tarefas de uma categoria específica, ordenadas por prioridade. 
+
+# Filtro de Tarefas por Prioridade e Categoria:
+
+Combina os filtros por prioridade e categoria, mostrando as tarefas que atendem a ambos os critérios. 
+
+# Download de Tarefas por Prioridade:
+
+Cria um arquivo de texto listando apenas as tarefas da prioridade escolhida pelo usuário, com formato: prioridade, categoria, status e descrição. 
+
+# Download de Tarefas por Categoria:
+
+Similar ao anterior, mas exporta as tarefas ordenadas por prioridade e filtradas por categoria. 
+
+# Download de Tarefas por Prioridade e Categoria:
+
+Combina as exportações anteriores, mantendo o formato do arquivo exportado. 
+
+# Requisitos Técnicos:
+
+Desenvolvido em linguagem C. Dados armazenados em arquivos binários (fread e fwrite). Capacidade de até 100 tarefas. Este projeto tem como objetivo criar um sistema completo e versátil para o gerenciamento de listas de tarefas, oferecendo ao usuário uma ampla variedade de opções para interagir e organizar suas atividades de forma eficiente.
