@@ -45,6 +45,7 @@ int mudarTarefa(ListaDeTarefas *lt) {
         case 2:
             printf("Digite a nova categoria da tarefa: ");
             fgets(lt->tarefas[pos].categoria, sizeof(lt->tarefas[pos].categoria), stdin);
+            
             break;
         case 3:
             printf("Digite a nova descrição da tarefa: ");
@@ -253,7 +254,7 @@ int filtrarPorCategoria(ListaDeTarefas lt) {
     }
 
     // Cria uma variável para armazenar a categoria escolhida
-    char categoriaEscolhida[50];
+    char categoriaEscolhida[100];
     // Copia a categoria escolhida para a variável
     strcpy(categoriaEscolhida, lt.tarefas[escolha - 1].categoria);
 
@@ -316,7 +317,7 @@ int catepri(ListaDeTarefas lt) {
     }
 
     // variável para armazenar a categoria escolhida
-    char categoriaEscolhida[50];
+    char categoriaEscolhida[100\];
     // Copia a categoria escolhida para a variável
     strcpy(categoriaEscolhida, lt.tarefas[escolhaCategoria - 1].categoria);
 
@@ -484,7 +485,7 @@ int downloadPorCatPri(ListaDeTarefas lt) {
     }
 
     // Armazena a categoria escolhida
-    char categoriaEscolhida[50];
+    char categoriaEscolhida[100];
     strcpy(categoriaEscolhida, lt.tarefas[escolhaCategoria - 1].categoria);
 
     // Solicita ao usuário para digitar a prioridade desejada
@@ -543,11 +544,11 @@ int listarTarefa(ListaDeTarefas lt) {
 
     // Imprime as opções
     printf("Menu Listar Tarefas\n");
-    printf("1 - Mostrar todas as tarefas\n");
-    printf("2 - Filtrar tarefas por prioridade\n");
+    printf("1 - Mostrar todas as Tarefas\n");
+    printf("2 - Filtrar tarefas por Prioridade\n");
     printf("3 - Filtrar tarefas por Status\n");
-    printf("4 - Filtrar tarefas por categoria\n");
-    printf("5 - Filtrar tarefas por categoria e prioridade\n");
+    printf("4 - Filtrar tarefas por Categoria\n");
+    printf("5 - Filtrar tarefas por Categoria e Prioridade\n");
     printf("6 - Dowload tarefa por Prioridade\n");
     printf("7 - Dowload tarefa por Categoria\n");
     printf("8 - Dowload tarefa por Categoria e Prioridade\n");
