@@ -365,7 +365,7 @@ int downloadPorPrioridade(Tarefa tarefasFiltradas[], int qtdTarefasFiltradas) {
     }
 
     FILE *arquivo;
-    arquivo = fopen("downloadPorPrioridade.txt", "w");
+    arquivo = fopen("downloadPrioridade.txt", "w");
 
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo.\n");
@@ -399,6 +399,80 @@ int downloadPorPrioridade(Tarefa tarefasFiltradas[], int qtdTarefasFiltradas) {
 }
 
 
+// Função para filtrar tarefas por categoria 
+int downloadPorCategoria(ListaDeTarefas lt) {
+    // Imprime as categorias e retorna a escolha do usuário
+    int escolha = imprimirCategoriasNumeradas(lt);
+
+    // Se a escolha for -1, significa que houve um erro
+    if (escolha == -1) {
+        return 1; // Retorna 1 indicando que houve um erro
+    }
+
+    // Cria uma variável para armazenar a categoria escolhida
+    char categoriaEscolhida[50];
+    strcpy(categoriaEscolhida, lt.tarefas[escolha - 1].categoria);
+
+    // Abre o arquivo "downloadCategoria.txt" para escrita
+    FILE *arquivo;
+    arquivo = fopen("downloadCategoria.txt", "w");
+
+    // Se o arquivo não puder ser aberto, imprime uma mensagem de erro
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return 1;
+    }
+
+    // Cria um array para armazenar as tarefas filtradas
+    Tarefa tarefasFiltradas[100];
+    int qtdTarefasFiltradas = 0;
+
+    // Filtra as tarefas pela categoria escolhida
+    for (int i = 0; i < lt.qtd; i++) {
+        if (strcmp(lt.tarefas[i].categoria, categoriaEscolhida) == 0) {
+            tarefasFiltradas[qtdTarefasFiltradas++] = lt.tarefas[i];
+        }
+    }
+
+    // Ordena as tarefas filtradas pela prioridade usando o algoritmo Bubble Sort
+    for (int i = 0; i < qtdTarefasFiltradas - 1; i++) {
+        for (int j = 0; j < qtdTarefasFiltradas - i - 1; j++) {
+            if (tarefasFiltradas[j].prioridade < tarefasFiltradas[j + 1].prioridade) {
+                Tarefa temp = tarefasFiltradas[j];
+                tarefasFiltradas[j] = tarefasFiltradas[j + 1];
+                tarefasFiltradas[j + 1] = temp;
+            }
+        }
+    }
+
+    // Escreve a lista de tarefas filtradas no arquivo
+    fprintf(arquivo, "\nLista de tarefas na Categoria %s\n", categoriaEscolhida);
+
+    for (int i = 0; i < qtdTarefasFiltradas; i++) {
+        fprintf(arquivo, "Tarefa %d\n", i + 1);
+        fprintf(arquivo, "Nome: %s\n", tarefasFiltradas[i].nome);
+        fprintf(arquivo, "Categoria: %s\n", tarefasFiltradas[i].categoria);
+        fprintf(arquivo, "Descrição: %s\n", tarefasFiltradas[i].descricao);
+        fprintf(arquivo, "Prioridade: %d\n", tarefasFiltradas[i].prioridade);
+        fprintf(arquivo, "Status: %d\n", tarefasFiltradas[i].status);
+        fprintf(arquivo, "\n");
+    }
+
+    // Fecha o arquivo
+    fclose(arquivo);
+
+    // Se nenhuma tarefa foi encontrada na categoria, imprime uma mensagem
+    if (qtdTarefasFiltradas == 0) {
+        printf("Nenhuma tarefa encontrada na Categoria %s.\n", categoriaEscolhida);
+    } else {
+        // Se tarefas foram encontradas, informa que o download foi concluído
+        printf("Download das tarefas da categoria %s concluído. Consulte o arquivo 'downloadCategoria.txt'.\n", categoriaEscolhida);
+    }
+
+    // Retorna 0 indicando que a função foi executada com sucesso
+    return 0;
+}
+
 // Função principal para listar tarefas
 int listarTarefa(ListaDeTarefas lt) {
     int opcao;
@@ -411,6 +485,7 @@ int listarTarefa(ListaDeTarefas lt) {
     printf("4 - Filtrar tarefas por categoria\n");
     printf("5 - Filtrar tarefas por categoria e prioridade\n");
     printf("6 - Dowload tarefa por Prioridade\n");
+    printf("7 - Dowload tarefa por Categoria\n");
     printf("Digite a opção desejada: ");
 
     // Lê a opção escolhida pelo usuário
@@ -452,9 +527,11 @@ int listarTarefa(ListaDeTarefas lt) {
         case 5:
             catepri(lt);
 
-      case 6:
+        case 6:
            downloadPorPrioridade(lt.tarefas, lt.qtd);
 
+        case 7:
+           downloadPorCategoria(lt);
       
         default:
             // Opção inválida
