@@ -2,15 +2,16 @@
 #include <wchar.h>  
 typedef struct {
     int prioridade;
-    wchar_t categoria[10];
-    wchar_t descricao[10];
-    wchar_t nome[10];
+    wchar_t Status[300];
+    wchar_t categoria[300];
+    wchar_t descricao[300];
+    wchar_t nome[300];
 
 // colocar para 300 depois
     int status; // mostrar completo, em andamento ou nao iniciado
 } Tarefa; 
 typedef struct {
-    Tarefa tarefas[10];
+    Tarefa tarefas[100];
 // colocar 100
     int pos;
     int qtd;
