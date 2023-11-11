@@ -126,23 +126,38 @@ int criarTarefa(ListaDeTarefas *lt) {
 
 // Deleta uma tarefa da lista
 int deletarTarefa(ListaDeTarefas *lt) {
+    // Verifica se a lista de tarefas não está vazia
     if (lt->qtd > 0) {
         printf("Deletar tarefa:\n");
-        int pos;
 
-        wprintf(L"Digite a posição da tarefa (1 a 100): ");
+        // Mostra as tarefas disponíveis para escolher
+        for (int i = 0; i < lt->qtd; i++) {
+            printf("%d - Tarefa %d\n", i + 1, i + 1);
+            printf("   Nome: %s\n", lt->tarefas[i].nome);
+            printf("   Categoria: %s\n", lt->tarefas[i].categoria);
+            printf("   Descrição: %s\n", lt->tarefas[i].descricao);
+            printf("   Prioridade: %d\n", lt->tarefas[i].prioridade);
+            printf("   Status: %d\n", lt->tarefas[i].status);
+            printf("\n");
+        }
+
+        int pos;
+        printf("Digite o número da tarefa a ser deletada: ");
         scanf("%d", &pos);
         pos--;
 
+        // Verifica se a posição inserida é válida
         if (pos >= 0 && pos < lt->qtd) {
+            // Desloca as tarefas para preencher o espaço da tarefa deletada
             for (int i = pos; i < lt->qtd - 1; i++) {
                 lt->tarefas[i] = lt->tarefas[i + 1];
             }
 
             lt->qtd--;
+            printf("Tarefa deletada com sucesso.\n");
             return 0;
         } else {
-            wprintf(L"Posição invalida.\n");
+            printf("Número de tarefa inválido.\n");
             return 1;
         }
     } else {
@@ -317,7 +332,7 @@ int catepri(ListaDeTarefas lt) {
     }
 
     // variável para armazenar a categoria escolhida
-    char categoriaEscolhida[100\];
+    char categoriaEscolhida[50];
     // Copia a categoria escolhida para a variável
     strcpy(categoriaEscolhida, lt.tarefas[escolhaCategoria - 1].categoria);
 
