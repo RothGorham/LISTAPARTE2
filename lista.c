@@ -11,9 +11,21 @@ int mudarTarefa(ListaDeTarefas *lt) {
         return 1;
     }
 
-    printf("Mudar tarefa\nDigite a posição da tarefa (1 a 100):");
+    printf("Lista de todas as tarefas\n");
+    for (int i = 0; i < lt->qtd; i++) {
+        // Imprime os detalhes da tarefa
+        printf("Tarefa %d\n", i + 1);
+        printf("Nome: %s\n", lt->tarefas[i].nome);
+        printf("Categoria: %s\n", lt->tarefas[i].categoria);
+        printf("Descrição: %s\n", lt->tarefas[i].descricao);
+        printf("Prioridade: %d\n", lt->tarefas[i].prioridade);
+        printf("Status: %d\n", lt->tarefas[i].status);
+        printf("\n");
+    }
+
+    printf("Mudar tarefa\n");
     int pos;
-    printf("Digite a posição da tarefa (1 a 100): ");
+    printf("Digite o número da tarefa (1 a 100): ");
     scanf("%d", &pos);
     pos--;
 
@@ -45,20 +57,19 @@ int mudarTarefa(ListaDeTarefas *lt) {
         case 2:
             printf("Digite a nova categoria da tarefa: ");
             fgets(lt->tarefas[pos].categoria, sizeof(lt->tarefas[pos].categoria), stdin);
-            
             break;
         case 3:
             printf("Digite a nova descrição da tarefa: ");
             fgets(lt->tarefas[pos].descricao, sizeof(lt->tarefas[pos].descricao), stdin);
             break;
-      case 4:
-          printf("Digite a nova prioridade da tarefa (de 1 a 10): ");
-          scanf("%d", &lt->tarefas[pos].prioridade);
-          break;
-      case 5:
-          printf("Digite o novo status da tarefa (1 para completo, 2 para em andamento, 3 para não iniciado): ");
-          scanf("%d", &lt->tarefas[pos].status);
-          break;
+        case 4:
+            printf("Digite a nova prioridade da tarefa (de 1 a 10): ");
+            scanf("%d", &lt->tarefas[pos].prioridade);
+            break;
+        case 5:
+            printf("Digite o novo status da tarefa (1 para completo, 2 para em andamento, 3 para não iniciado): ");
+            scanf("%d", &lt->tarefas[pos].status);
+            break;
         default:
             printf("Opção inválida.\n");
             return 1;
@@ -66,9 +77,6 @@ int mudarTarefa(ListaDeTarefas *lt) {
 
     return 0;
 }
-
-
-
 
 int criarTarefa(ListaDeTarefas *lt) {
     if (lt->qtd < 100) {
@@ -607,19 +615,21 @@ int listarTarefa(ListaDeTarefas lt) {
 
         case 5:
             catepri(lt);
-
+            break;
         case 6:
            downloadPorPrioridade(lt.tarefas, lt.qtd);
+            break;
 
         case 7:
            downloadPorCategoria(lt);
-
+           break;
         case 8:
            downloadPorCatPri(lt);
-      
+           break;
+
         default:
             // Opção inválida
-            
+
             return 1; // Retorna 1 indicando que houve um erro
     }
 
