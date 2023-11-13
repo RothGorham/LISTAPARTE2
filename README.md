@@ -10,7 +10,9 @@ Este projeto visa a criação de um aplicativo em C para o gerenciamento de uma 
 
 # Registro de Tarefas:
 
-O usuário tem a capacidade de registrar uma nova tarefa, fornecendo descrição, categoria e prioridade. O aplicativo guarda essas informações em um arquivo binário, utilizando as funções fread e fwrite. Visualização de Tarefas:
+O usuário tem a capacidade de registrar uma nova tarefa, fornecendo descrição, categoria e prioridade. O aplicativo guarda essas informações em um arquivo binário, utilizando as funções fread e fwrite. 
+
+# Visualização de Tarefas:
 
 O usuário pode ver todas as tarefas registradas, sem filtros ou com filtros.
 
@@ -26,7 +28,7 @@ Foi adicionadas opções para mudar o status de uma tarefa: concluído, em progr
 
 Implementação de novas funcionalidades para aprimorar a experiência do usuário. 
 
-# Funcionalidades Extras:
+# Extras:
 
 O usuário pode selecionar uma tarefa e alterar qualquer campo associado a ela. 
 
